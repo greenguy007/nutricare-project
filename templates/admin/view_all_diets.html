@@ -1,0 +1,51 @@
+{% extends 'admin/common.html' %}
+{% block content %}
+
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+            <h3 class="mb-20">All Diet Plans</h3>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Dietician</th>
+                        <th>Plan Name</th>
+                        <th>Image</th>
+                        <th>Steps</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in plans %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ p.dietician.username }}</td>
+                        <td>{{ p.plan_name }}</td>
+                        <td>
+                            <img src="{{ p.image.url }}" width="80">
+                        </td>
+                        <td>
+                            <div style="width: 300px; height: 120px; overflow-y: auto; border:1px solid #ccc; padding:5px; background-color:#f9f9f9;">
+                                {% for step in p.steps.all %}
+                                    <p><strong>Step {{ forloop.counter }}:</strong> {{ step.step_text }}</p>
+                                {% empty %}
+                                    <p>No steps added</p>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td>{{ p.description|truncatewords:20 }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">No diet plans found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

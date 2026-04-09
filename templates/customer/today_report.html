@@ -1,0 +1,51 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h4 class="text-center">Today's Nutrition Summary</h4>
+
+    <table class="table table-bordered mt-3 text-center">
+        <tr><th>Calories</th><td>{{ total.calories }}</td></tr>
+        <tr><th>Carbs</th><td>{{ total.carbs }}</td></tr>
+        <tr><th>Protein</th><td>{{ total.protein }}</td></tr>
+        <tr><th>Fat</th><td>{{ total.fat }}</td></tr>
+        <tr><th>Zinc</th><td>{{ total.zinc }}</td></tr>
+    </table>
+
+    <h5 class="text-center mt-3">
+        Diet Status:
+        <span class="
+        {% if status == 'Good' %}text-success
+        {% elif status == 'Average' %}text-warning
+        {% else %}text-danger{% endif %}">
+        {{ status }}
+        </span>
+    </h5>
+
+    <canvas id="nutritionChart" class="mt-4"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('nutritionChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Calories', 'Carbs', 'Protein', 'Fat', 'Zinc'],
+        datasets: [{
+            label: 'Nutrition Intake',
+            data: [
+                {{ total.calories }},
+                {{ total.carbs }},
+                {{ total.protein }},
+                {{ total.fat }},
+                {{ total.zinc }}
+            ]
+        }]
+    }
+});
+</script>
+
+{% endblock %}

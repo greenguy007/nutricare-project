@@ -1,0 +1,51 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<style>
+.box{
+    max-width:400px;
+    margin:40px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid gray;
+    border-radius:6px;
+}
+button{
+    width:100%;
+    padding:10px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:6px;
+}
+h3{text-align:center}
+</style>
+
+<div class="box">
+
+    <h3>Payment</h3>
+
+    <p><strong>{{ plan.title }}</strong></p>
+    <p>Amount: ₹{{ plan.price }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input type="text" placeholder="Card Holder Name" required>
+        <input type="text" placeholder="Card Number" required>
+        <input type="text" placeholder="Expiry (MM/YY)" required>
+        <input type="text" placeholder="CVV" required>
+
+        <button type="submit">Pay Now</button>
+    </form>
+
+</div>
+
+{% endblock %}

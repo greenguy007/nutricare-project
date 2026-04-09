@@ -1,0 +1,48 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+<br><br>
+<div class="container">
+    <h3 class="mb-3">My Custom Diet Plans</h3>
+
+    {% for plan in custom_plans %}
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h5 class="card-title">{{ plan.title }}</h5>
+            <p class="text-muted">
+                Customized by {{ plan.dietician.username }} |
+                {{ plan.created_at|date:"d M Y" }}
+            </p>
+
+            <p>{{ plan.description }}</p>
+
+            <h6>Diet Steps</h6>
+            <ul class="list-group">
+                {% for step in plan.steps.all %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <div>
+                        {% if step.is_completed %}
+                            <s>Step {{ forloop.counter }}: {{ step.step_text }}</s>
+                        {% else %}
+                            <strong>Step {{ forloop.counter }}:</strong> {{ step.step_text }}
+                        {% endif %}
+                    </div>
+
+                    <a href="{% url 'toggle_custom_diet_step' step.id %}"
+                    class="btn btn-sm {% if step.is_completed %}btn-success{% else %}btn-outline-secondary{% endif %}">
+                        {% if step.is_completed %}✔ Done{% else %}Mark Done{% endif %}
+                    </a>
+
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    {% empty %}
+    <p>No customized diet plans yet.</p>
+    {% endfor %}
+</div>
+<br><br>
+{% endblock %}

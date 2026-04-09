@@ -1,0 +1,115 @@
+{% extends 'admin/common.html' %}
+{% block content %}
+
+<style>
+.container{
+    max-width:1100px;
+    margin:30px auto;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-bottom:30px;
+    background:white;
+}
+
+th, td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:left;
+    font-size:14px;
+}
+
+th{
+    background:#2c7be5;
+    color:white;
+}
+
+h3{
+    margin-bottom:10px;
+}
+
+/* STAR */
+.star{
+    color:gold;
+    font-size:14px;
+}
+</style>
+
+<div class="container">
+
+    <!-- WORKOUT FEEDBACK -->
+    <h3>Workout Feedback</h3>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Workout Plan</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Date</th>
+        </tr>
+
+        {% for fb in workout_feedbacks %}
+        <tr>
+            <td>{{ fb.id }}</td>
+            <td>{{ fb.customer.full_name }}</td>
+            <td>{{ fb.plan.title }}</td>
+
+            <td>
+                {% for i in "12345"|slice:":fb.rating" %}
+                    <span class="star">★</span>
+                {% endfor %}
+            </td>
+
+            <td>{{ fb.comment }}</td>
+            <td>{{ fb.created_at|date:"d M Y" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No workout feedback</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- DIET FEEDBACK -->
+    <h3>Diet Plan Feedback</h3>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Diet Plan</th>
+            <th>Rating</th>
+            <th>Feedback</th>
+            <th>Date</th>
+        </tr>
+
+        {% for fb in diet_feedbacks %}
+        <tr>
+            <td>{{ fb.id }}</td>
+            <td>{{ fb.customer.full_name }}</td>
+            <td>{{ fb.diet_plan.plan_name }}</td>
+
+            <td>
+                {% for i in "12345"|slice:":fb.rating" %}
+                    <span class="star">★</span>
+                {% endfor %}
+            </td>
+
+            <td>{{ fb.feedback }}</td>
+            <td>{{ fb.created_at|date:"d M Y" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No diet feedback</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="container">
+    <h4>Request Custom Diet</h4>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Diet Plan</label>
+            <input type="text" class="form-control" value="{{ plan.plan_name }}" readonly>
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Food Allergies / Notes</label>
+            <textarea name="notes" class="form-control" rows="5"
+                      placeholder="Mention allergies, dislikes, medical conditions..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">
+            Send Request
+        </button>
+    </form>
+</div>
+
+{% endblock %}

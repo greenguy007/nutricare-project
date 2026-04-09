@@ -1,0 +1,201 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<style>
+.container{
+    max-width:950px;
+    margin:30px auto;
+    padding:15px;
+}
+
+/* Header */
+.header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.header h2{
+    margin-bottom:8px;
+}
+
+.header p{
+    color:#555;
+    font-size:15px;
+}
+
+/* Video */
+.video-box{
+    margin-bottom:20px;
+}
+
+.video-box video{
+    width:100%;
+    border-radius:12px;
+    max-height:400px;
+    object-fit:cover;
+}
+
+/* Steps */
+.steps-title{
+    font-size:20px;
+    margin-bottom:15px;
+    font-weight:600;
+}
+
+.step{
+    display:flex;
+    gap:15px;
+    background:#f7f9fc;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    align-items:flex-start;
+}
+
+.step-number{
+    background:blue;
+    color:white;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+.step-content{
+    flex:1;
+}
+
+.step-content h4{
+    margin-bottom:5px;
+}
+
+.step-content p{
+    color:#555;
+    font-size:14px;
+}
+
+/* Step Image */
+.step img{
+    width:140px;
+    height:100px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+/* Responsive */
+@media(max-width:600px){
+    .step{
+        flex-direction:column;
+    }
+    .step img{
+        width:100%;
+        height:auto;
+    }
+}
+</style>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h2>{{ plan.title }}</h2>
+        <p>{{ plan.description }}</p>
+    </div>
+
+    <!-- VIDEO -->
+    {% if plan.video %}
+    <div class="video-box">
+        <video controls>
+            <source src="{{ plan.video.url }}">
+        </video>
+    </div>
+    {% endif %}
+
+    <hr>
+
+    <!-- STEPS -->
+    <div class="steps-title">Workout Steps</div>
+
+    {% for step in steps %}
+    <div class="step">
+
+        <!-- Step Number Circle -->
+        <div class="step-number">
+            {{ step.step_number }}
+        </div>
+
+        <!-- Step Content -->
+        <div class="step-content">
+            <h4>{{ step.title }}</h4>
+            <p>{{ step.description }}</p>
+
+            {% if step.image %}
+                <img src="{{ step.image.url }}">
+            {% endif %}
+        </div>
+
+    </div>
+    {% empty %}
+        <p>No steps available</p>
+    {% endfor %}
+
+    <hr>
+
+<!-- FEEDBACK FORM -->
+<h3 style="margin-top:20px;">Give Feedback</h3>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Rating</label>
+    <select name="rating" required>
+        <option value="">Select</option>
+        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+        <option value="4">⭐⭐⭐⭐ (4)</option>
+        <option value="3">⭐⭐⭐ (3)</option>
+        <option value="2">⭐⭐ (2)</option>
+        <option value="1">⭐ (1)</option>
+    </select>
+
+    <label>Comment</label>
+    <textarea name="comment" rows="3" required></textarea>
+
+    <button type="submit" style="margin-top:10px;background:green;color:white;padding:8px;border:none;border-radius:6px;">
+        Submit Feedback
+    </button>
+</form>
+
+<hr>
+
+<!-- SHOW FEEDBACK -->
+<h3>User Feedback</h3>
+
+{% for fb in feedbacks %}
+<div style="background:#f5f5f5;padding:10px;border-radius:8px;margin-bottom:10px;">
+
+    <strong>{{ fb.customer.full_name }}</strong><br>
+
+    <!-- stars -->
+    <span>
+        {% for i in "12345"|slice:":fb.rating" %}
+            ⭐
+        {% endfor %}
+    </span>
+
+    <p>{{ fb.comment }}</p>
+
+    <small style="color:gray;">
+        {{ fb.created_at|date:"d M Y" }}
+    </small>
+
+</div>
+{% empty %}
+<p>No feedback yet</p>
+{% endfor %}
+
+</div>
+
+{% endblock %}

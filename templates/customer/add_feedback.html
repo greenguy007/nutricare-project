@@ -1,0 +1,43 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="container mt-5" style="max-width:500px;">
+
+    <div style="background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px lightgray;">
+
+        <h4 class="text-center">Give Feedback</h4>
+
+        <p><b>Plan:</b> {{ plan.plan_name }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Rating -->
+            <label>Rating:</label>
+            <select name="rating" class="form-control mb-3" required>
+                <option value="">Select</option>
+                <option value="1">1 ⭐</option>
+                <option value="2">2 ⭐</option>
+                <option value="3">3 ⭐</option>
+                <option value="4">4 ⭐</option>
+                <option value="5">5 ⭐</option>
+            </select>
+
+            <!-- Feedback -->
+            <textarea name="feedback"
+                      class="form-control mb-3"
+                      rows="3"
+                      placeholder="Write your feedback..."
+                      required></textarea>
+
+            <button type="submit" class="btn btn-success w-100">
+                Submit Feedback
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

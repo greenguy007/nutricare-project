@@ -1,0 +1,163 @@
+{% extends 'admin/common.html' %}
+{% block content %}
+
+<style>
+.container-box{
+    max-width:1100px;
+    margin:30px auto;
+}
+
+/* CARD */
+.card-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.title{
+    font-size:26px;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:15px;
+}
+
+/* IMAGE */
+.main-img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+/* VIDEO */
+.video-box video{
+    width:100%;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+/* INFO */
+.info p{
+    margin-bottom:8px;
+    font-size:15px;
+}
+
+/* STEPS */
+.step-card{
+    background:#f8f9fc;
+    border-radius:12px;
+    padding:15px;
+    height:100%;
+    transition:0.3s;
+}
+
+.step-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.step-img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.step-title{
+    font-weight:600;
+    margin-bottom:5px;
+}
+
+.back-btn{
+    margin-top:20px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .main-img{
+        height:220px;
+    }
+}
+</style>
+
+<div class="container-box">
+
+    <!-- MAIN CARD -->
+    <div class="card-box">
+
+        <div class="title">{{ workout.title }}</div>
+        <div class="subtitle">By {{ workout.dietician.full_name }}</div>
+
+        <div class="row">
+
+            <!-- IMAGE -->
+            <div class="col-md-6 mb-3">
+                <img src="{{ workout.image.url }}" class="main-img">
+            </div>
+
+            <!-- DETAILS -->
+            <div class="col-md-6 info">
+
+                <p><b>Description:</b></p>
+                <p>{{ workout.description }}</p>
+
+                <p><b>Dietician:</b> {{ workout.dietician.full_name }}</p>
+
+                {% if workout.video %}
+                <div class="video-box">
+                    <video controls>
+                        <source src="{{ workout.video.url }}">
+                    </video>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- STEPS SECTION -->
+    <div class="mt-4">
+
+        <h4 style="margin-bottom:15px;">Workout Steps</h4>
+
+        <div class="row">
+            {% for s in steps %}
+            <div class="col-md-4 mb-4">
+
+                <div class="step-card">
+
+                    <div class="step-title">
+                        Step {{ s.step_number }} - {{ s.title }}
+                    </div>
+
+                    <img src="{{ s.image.url }}" class="step-img">
+
+                    <p>{{ s.description }}</p>
+
+                </div>
+
+            </div>
+            {% empty %}
+            <p>No steps added</p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- BACK BUTTON -->
+    <a href="{% url 'view_all_workouts' %}" class="btn btn-secondary back-btn">
+        ← Back
+    </a>
+
+</div>
+
+{% endblock %}

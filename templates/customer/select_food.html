@@ -1,0 +1,28 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h4 class="text-center mb-3">Select Food You Ate Today</h4>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for meal_type, meal_name in meal_categories %}
+            <h5 class="mt-3">{{ meal_name }}</h5>
+            {% with foods|dictsort:"meal_type" as sorted_foods %}
+                {% for food in foods %}
+                    {% if food.meal_type == meal_type %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="food" value="{{ food.id }}">
+                            <label class="form-check-label">{{ food.name }}</label>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endwith %}
+        {% endfor %}
+
+        <button class="btn btn-primary mt-4">Submit</button>
+    </form>
+</div>
+<br>
+{% endblock %}

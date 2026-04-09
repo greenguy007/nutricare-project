@@ -1,0 +1,63 @@
+{% extends 'admin/common.html' %}
+{% block content %}
+<br><br>
+<div class="container mt-5">
+    <h3>Dietician Profile</h3>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <td>{{ d.full_name }}</td>
+        </tr>
+
+        <tr>
+            <th>Phone</th>
+            <td>{{ d.phone }}</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>{{ d.email }}</td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td>{{ d.address }}</td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>
+                {% if d.login.is_active %}
+                    <span style="color:green;">Active</span>
+                {% else %}
+                    <span style="color:red;">Inactive</span>
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Image</th>
+            <td>
+                <img src="{{ d.image.url }}" width="120">
+            </td>
+        </tr>
+
+        <tr>
+            <th>License</th>
+            <td>
+                {% if d.license_file %}
+                    <a href="{{ d.license_file.url }}" target="_blank">
+                        View License
+                    </a>
+                {% else %}
+                    No License Uploaded
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+    <a href="{% url 'view_all_dieticians' %}" class="btn btn-secondary">Back</a>
+</div>
+<br><br>
+{% endblock %}

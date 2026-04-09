@@ -1,0 +1,403 @@
+{% load static %}
+
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message|escapejs }}");
+    </script>
+  {% endfor %}
+{% endif %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from themetechmount.com/html/nutricare/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Jan 2026 11:03:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="Nutricare - Nutrition Health Services HTML5 Template" />
+<meta name="description" content="Nutricare - Nutrition Health Services HTML5 Template, Nutrico - Nutrition Health Services WordPress Theme, themes & template, html5 template, WordPress theme, unlimited colors available, ui/ux, ui/ux design, best html template, html template, html, woocommerce, shopify, prestashop, eCommerce, JavaScript, best CSS theme,css3, elementor theme, latest premium themes 2024, latest premium templates 2024, Preyan Technosys Pvt.Ltd, cymol themes, themetech mount, Web 3.0, multi-theme, website theme and template, woocommerce, bootstrap template, web templates, responsive theme, services, web design and development, business, diet and nutrition template, dietitian, fitness, food, health, health and diet consultancy, healthy food, meals, nutrition, nutrition health care, nutrition WordPress theme, organic, sport and weight loss programs, vegetarian, yoga, healthy lifestyle, healthy food, weight loss, wellness, fitness motivation, healthy living, healthy eating, vegan, personal trainer, weight loss journey" />
+<meta name="author" content="https://www.themetechmount.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Nutricare – Nutrition Health &amp; Diet Consultancy</title>
+
+<!-- favicon icon -->
+<link rel="shortcut icon" href="{% static "images/favicon.png" %}" />
+
+<!-- bootstrap -->
+<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}"/>
+
+<!-- animate -->
+<link rel="stylesheet" type="text/css" href="{% static "css/animate.css" %}"/>
+
+<!-- owl-carousel -->
+<link rel="stylesheet" type="text/css" href="{% static "css/owl.carousel.css" %}"/>
+
+<!-- fontawesome -->
+<link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.css" %}"/>
+
+<!-- themify -->
+<link rel="stylesheet" type="text/css" href="{% static "css/themify-icons.css" %}"/>
+<!-- flaticon -->
+<link rel="stylesheet" type="text/css" href="{% static "css/flaticon.css" %}"/>
+
+<!-- REVOLUTION LAYERS STYLES -->
+
+    <link rel="stylesheet" type="text/css" href="{% static "revolution/css/layers.css" %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static "revolution/css/settings.css" %}">
+
+<!-- prettyphoto -->
+<link rel="stylesheet" type="text/css" href="{% static "css/prettyPhoto.css" %}">
+<!-- shortcodes -->
+<link rel="stylesheet" type="text/css" href="{% static "css/shortcodes.css" %}"/>
+
+<!-- main -->
+<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}"/>
+
+<!-- responsive -->
+<link rel="stylesheet" type="text/css" href="{% static "css/responsive.css" %}"/>
+
+</head>
+
+<body>
+
+    <!--page start-->
+    <div class="page">
+
+    
+
+
+        
+        <!--header start-->
+        <header id="masthead" class="header ttm-header-style-stackcenter">
+            <!-- ttm-topbar-wrapper -->
+            <div class="ttm-topbar-wrapper ttm-bgcolor-black ttm-textcolor-white clearfix">
+                <div class="container">
+                    <div class="ttm-topbar-content">
+                        <ul class="list-inline top-contact  topbar-left text-left">
+                            <li><i class="fa fa-map-marker"> </i> 24 Tech Roqad st Ny 10023</li> 
+                            <li> <i class="fa fa-clock-o"></i> Mon-Sat: 9am to 6pm</li>
+                        </ul>
+                        <div class="topbar-right text-right">
+                            <ul class="list-inline top-contact">
+                                <li><i class="fa fa-envelope-o"></i><a href="mailto:info@example.com.com">info@example.com</a></li>
+                            </ul>
+                            <div class="ttm-social-links-wrapper list-inline">
+                                <ul class="social-icons list-inline">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-flickr"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ttm-topbar-btn ttm-textcolor-white"><a class="ttm-btn ttm-btn-size-md ttm-btn-bgcolor-skincolor" href="#">View Schedule</a></div>
+                            <span class="ttm-fbar-btn ttm-fbar-btn-cposition-right">
+                                <a href="#" class="ttm-fbar-btn-link">
+                                    <span class="ttm-fbar-open-icon"><i class="ti ti-menu"></i></span>
+                                    <span class="ttm-fbar-close-icon"><i class="ti ti-close"></i></span>
+                                    <span class="ttm-hide">Open</span>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="ttm-fbar ttm-fbar-right">
+                            <div class="ttm-fbar-inner">
+                                <div class="ttm-fbar-box-w ttm-bg ttm-bgimage-yes ttm-bgcolor-skincolor ttm-textcolor-white">
+                                    <div class="ttm-row-wrapper-bg-layer ttm-bg-layer"></div>
+                                    <div class="ttm-fbar-content-wrapper">
+                                        <div class="ttm-fbar-content">
+                                            <div class="ttm-fbar-box">
+                                                <div class="floatingbar-widget-top">
+                                                    <div class="ttm-fbar-widget ttm-fbar-widget-even">
+                                                        <div class="textwidget widget-text">
+                                                            <div class="ttm-author-widget text-center ttm-textcolor-white">
+                                                                <div class="author-widget_img">
+                                                                    <img src="{% static "images/author-img.jpg" %}" class="author-img" alt="author-img">
+                                                                </div>
+                                                                <h4 class="author-name">Alex William</h4>
+                                                                <p class="author-widget_text">There are many variations of passages of Lorem Ipsum available, but the majority have alteration.</p>
+                                                                <span class="author-autograph">
+                                                                    <img class="author-img" src="{% static "images/author-sign.png" %}" alt="author image">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ttm-fbar-widget ttm-fbar-widget-odd">
+                                                        <h3 class="widget-title">Opening Hours:</h3>
+                                                        <div class="textwidget widget-text">These are our normal opening hours. When we are closed can be found here.<br>
+                                                            <div class="ttm-pricelistbox-wrapper ">
+                                                                <div class="ttm-pricelist-block-wrapper">
+                                                                    <ul class="ttm-pricelist-block mt-10">
+                                                                        <li><span>Monday - Friday</span><p class="service-price">8.00 – 17.00</p></li>
+                                                                        <li><span>Saturday</span><p class="service-price">8.00 – 15.00</p></li>
+                                                                        <li><span>Sunday</span><p class="service-price">Closed</p></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ttm-fbar-widget ttm-fbar-widget-even">
+                                                        <div class="featured-icon-box left-icon icon-align-top">
+                                                            <div class="featured-icon">
+                                                                <div class="ttm-icon ttm-icon_element-border ttm-icon_element-color-white ttm-icon_element-size-md ttm-icon_element-style-square">
+                                                                    <i class="fa fa-phone"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="featured-content">
+                                                                <div class="featured-title">
+                                                                    <h5>+123 456 78910 / 11</h5>
+                                                                </div>
+                                                                <div class="featured-desc">
+                                                                    <p>Have a question? call us now</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="ttm-fbar-close">
+                                            <span class="ttm-fbar-close-icon">
+                                                <i class="ti ti-close"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- ttm-topbar-wrapper end -->
+            <!-- ttm-header-wrap -->
+            <div class="ttm-header-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- site-branding -->
+                            <div class="site-branding">
+                                <a class="home-link" href="" title="Nutricare" rel="home">
+                                    <img id="logo-img" class="img-center" src="{% static "images/logo-img.png" %}" alt="logo-img">
+                                </a>
+                            </div><!-- site-branding end -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- ttm-stickable-header-w -->
+                            <div id="ttm-stickable-header-w" class="ttm-stickable-header-w ttm-bgcolor-white clearfix">
+                                <div id="site-header-menu" class="site-header-menu">
+                                    <div class="site-header-menu-inner ttm-stickable-header">
+                                        <div class="container">
+                                            <!--site-navigation -->
+                                            <div id="site-navigation" class="site-navigation">
+                                                <div class="ttm-menu-toggle">
+                                                    <input type="checkbox" id="menu-toggle-form">
+                                                    <label for="menu-toggle-form" class="ttm-menu-toggle-block">
+                                                        <span class="toggle-block toggle-blocks-1"></span>
+                                                        <span class="toggle-block toggle-blocks-2"></span>
+                                                        <span class="toggle-block toggle-blocks-3"></span>
+                                                    </label>
+                                                </div>
+                                                <nav id="menu" class="menu">
+                                                    <ul class="dropdown">
+                                                        <li class="active"><a href="{% url 'admin_dashboard' %}">Home</a>
+                                                            
+                                                        </li>
+                                                        
+                                                        <li><a href="#">Users</a>
+                                                            <ul>
+                                                                <li><a href="{% url 'view_all_customers' %}">Customers</a></li>
+                                                                <li><a href="{% url 'view_all_dieticians' %}">Dieticians</a></li>
+                                                                
+                                                            </ul>
+                                                        </li> 
+
+                                                        <li><a href="#">Diets</a>
+                                                            <ul>
+                                                                {% comment %} <li><a href="{% url 'all_joined_diet_plans' %}">Joined</a></li> {% endcomment %}
+                                                                <li><a href="{% url 'view_all_diets' %}">Added</a></li>
+                                                                <li><a href="{% url 'admin_view_diet_plan_pdfs' %}">PDFs</a></li>
+                                                                
+                                                            </ul>
+                                                        </li> 
+                                                        <li ><a href="#">Workouts</a>
+                                                            <ul>
+                                                                <li><a href="{% url 'view_all_workouts' %}">All Workouts</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="{% url 'display_all_food' %}">All Foods</a></li>
+                                                        
+                                                        <li ><a href="{% url 'admin_feedbacks' %}">Feedbacks</a></li>
+                                                        
+                                                        <li><a href="{% url 'index' %}">Logout</a></li>
+
+                                                    </ul>
+                                                </nav>
+                                            </div><!-- site-navigation end-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- ttm-stickable-header-w end-->
+                    </div>
+                </div>
+            </div><!--ttm-header-wrap end -->
+        </header>
+        <!--header end-->
+        
+        {% block content %}
+        {% endblock  %}
+    <!--footer start-->
+    <footer class="footer widget-footer ttm-bgcolor-black clearfix">
+        <div class="first-footer">
+            <div class="container">
+                <div class="row align-center">
+                    <div class="col-lg-8 col-xs-12 widget-area">
+                        <div class="featured-icon-box left-icon icon-align-top">
+                            <div class="featured-icon">
+                                <div class="ttm-icon ttm-icon_element-onlytxt ttm-icon_element-color-skincolor ttm-icon_element-size-xs">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                            </div>
+                            <div class="featured-content">
+                                <div class="featured-title">
+                                    <h5>Opening Hours:</h5>
+                                    <h6>Monday: 8:00 AM - 20:00 PM &nbsp;&nbsp; | &nbsp;&nbsp; Saturday: 10:00AM - 2:00PM</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xs-12 widget-area text-right">
+                        <div class="download-button">
+                            <a href="#"><img src="{% static "images/app-button-01.png" %}" alt="app-button"></a>
+                            <a href="#"><img src="{% static "images/app-button-02.png" %}" alt="app-button"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="second-footer ttm-textcolor-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 widget-area">
+                        <div class="widget clearfix">
+                            <div class="footer-logo">
+                                <img id="footer-logo-img" class="img-center" src="{% static "images/footer-logo.png" %}" alt="">
+                            </div>
+                            <p>We have been the most trusted Health care Nutrition for 25 years. We're proud of our rich history for nutritionists services.</p>
+                            <div class="separator pt-5">
+                                <div class="sep-line mb-30"></div>
+                            </div>
+                            <ul class="widget-contact">
+                                <li><a href="mailto:info@example.com" target="_blank"><i class="fa fa-envelope-o"></i>info@example.com</a></li>
+                                <li><i class="fa fa-phone"></i>(+01) 123 456 7890</li>
+                            </ul>
+                            <div class="social-icons social-hover">
+                                <ul class="list-inline">
+                                    <li class="social-facebook"><a class="tooltip-top" target="_blank" href="#" data-tooltip="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li class="social-twitter"><a class="tooltip-top" target="_blank" href="#" data-tooltip="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li class="social-gplus"><a class=" tooltip-top" target="_blank" href="#" data-tooltip="Flickr"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
+                                    <li class="social-linkedin"><a class=" tooltip-top" target="_blank" href="#" data-tooltip="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 widget-area">
+                        <div class="widget clearfix">
+                           <div class="ttm-newsletter-box">
+                               <h3 class="widget-title">Newsletter</h3>
+                               <p>Sign up to get exclusive offers from our favorite brands and to be well up in the news.</p>
+                               <form action="{% url 'newsletter_subscribe' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="mc4wp-form-fields">
+                                        <div class="mailchimp-inputbox">
+                                            <input type="email" name="EMAIL" placeholder="Your email address.." required="">
+                                            <input type="submit" value="Subscribe">
+                                        </div>
+                                    </div>
+                                </form>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 widget-area">
+                        <div class="widget clearfix">
+                            <h3 class="widget-title">Gallery</h3>
+                            <div class="food-grid-footer" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                                <img src="{% static 'images/food/l.jpeg' %}" alt="food" style="width:100%;height:150px;object-fit:cover;border-radius:12px;cursor:pointer;transition:all .3s ease;" onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 6px 20px rgba(0,255,100,.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                                <img src="{% static 'images/food/whatsapp1.jpeg' %}" alt="food" style="width:100%;height:150px;object-fit:cover;border-radius:12px;cursor:pointer;transition:all .3s ease;" onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 6px 20px rgba(0,255,100,.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                                <img src="{% static 'images/food/whatsapp2.jpeg' %}" alt="food" style="width:100%;height:150px;object-fit:cover;border-radius:12px;cursor:pointer;transition:all .3s ease;" onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 6px 20px rgba(0,255,100,.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                                <img src="{% static 'images/food/whatsapp3.jpeg' %}" alt="food" style="width:100%;height:150px;object-fit:cover;border-radius:12px;cursor:pointer;transition:all .3s ease;" onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 6px 20px rgba(0,255,100,.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer-text ttm-textcolor-white">
+            <div class="container">
+                <div class="row copyright">
+                    <div class="col-md-8 ttm-footer2-left">
+                        <span>Copyright © 2019&nbsp;<a href="#">Nutricare</a>. All rights reserved.</span>
+                    </div>
+                    <div class="col-md-4 ttm-footer2-right">
+                        <ul id="menu-footer-menu" class="footer-nav-menu">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Supplier</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--footer end-->
+
+    <!--back-to-top start-->
+    <a id="totop" href="#top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!--back-to-top end-->
+
+</div><!-- page end -->
+
+    <!-- Javascript -->
+
+    <script src="{% static "js/jquery-3.7.1.min.js" %}"></script>
+    <script src="{% static "js/jquery-migrate-3.4.1.min.js" %}"></script>
+    <script src="{% static "js/tether.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script> 
+    <script src="{% static "js/jquery.easing.js" %}"></script>    
+    <script src="{% static "js/jquery-waypoints.js" %}"></script>    
+    <script src="{% static "js/jquery-validate.js" %}"></script> 
+    <script src="{% static "js/owl.carousel.js" %}"></script>
+    <script src="{% static "js/jquery.prettyPhoto.js" %}"></script>
+    <script src="{% static "js/numinate.min6959.js" %}?ver=4.9.3"></script>
+    <script src="{% static "js/main.js" %}"></script>
+
+    <!-- Revolution Slider -->
+    <script src="{% static "revolution/js/jquery.themepunch.tools.min.js" %}"></script>
+    <script src="{% static "revolution/js/jquery.themepunch.revolution.min.js" %}"></script>
+    <script src="{% static "revolution/js/slider.js" %}"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->    
+
+    <script src="{% static "revolution/js/extensions/revolution.extension.actions.min.js" %}"></script>
+    <script src="{% static "revolution/js/extensions/revolution.extension.carousel.min.js" %}"></script>
+    <script src="{% static "revolution/js/extensions/revolution.extension.kenburn.min.js" %}"></script>
+    <script src="{% static "revolution/js/extensions/revolution.extension.layeranimation.min.js" %}"></script>
+    <script src="{% static "revolution/js/extensions/revolution.extension.migration.min.js" %}"></script>
+    <script src="{% static "revolution/js/extensions/revolution.extension.navigation.min.js" %}"></script>
+    <script src="{% static "revolution/js/extensions/revolution.extension.parallax.min.js" %}"></script>
+    <script src="{% static "revolution/js/extensions/revolution.extension.slideanims.min.js" %}"></script>
+
+    <!-- Javascript end-->
+
+</body>
+
+<!-- Mirrored from themetechmount.com/html/nutricare/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Jan 2026 11:04:34 GMT -->
+</html>

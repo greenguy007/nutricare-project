@@ -1,0 +1,139 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+
+            <h3 class="mb-4 text-center">Available Diet Plans</h3>
+
+            <!-- 🔍 Search + Filter -->
+            <form method="get" class="mb-4">
+                <div class="row">
+
+                    <div class="col-md-4 mb-2">
+                        <input type="text" name="search" class="form-control"
+                               placeholder="Search diet plan..."
+                               value="{{ request.GET.search }}">
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <select name="dietician" class="form-control">
+                            <option value="">-- Filter by Dietician --</option>
+                            {% for d in dieticians %}
+                                <option value="{{ d.id }}"
+                                    {% if request.GET.dietician == d.id|stringformat:"s" %}
+                                        selected
+                                    {% endif %}>
+                                    {{ d.username }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                        <a href="{% url 'view_customer_diets' %}" class="btn btn-secondary">Reset</a>
+                    </div>
+
+                </div>
+            </form>
+
+            <!-- 📊 Table -->
+            <div style="overflow-x:auto;">
+                <table class="table table-bordered table-striped text-center">
+
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Dietician</th>
+                            <th>Plan</th>
+                            <th>Image</th>
+                            <th>Steps</th>
+                            <th>Description</th>
+                            {% comment %} <th>Type</th> {% endcomment %}
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for p in plans %}
+                        <tr>
+
+                            <td>{{ forloop.counter }}</td>
+
+                            <td>{{ p.dietician.username }}</td>
+
+                            <td><b>{{ p.plan_name }}</b></td>
+
+                            <td>
+                                <img src="{{ p.image.url }}"
+                                     style="width:80px;height:80px;object-fit:cover;border-radius:8px;">
+                            </td>
+
+                            <td>
+                                <div style="width:250px;height:120px;overflow-y:auto;border:1px solid lightgray;padding:6px;border-radius:5px;text-align:left;">
+                                    {% for step in p.steps.all %}
+                                        <p style="margin:2px 0;">
+                                            <strong>{{ forloop.counter }}.</strong> {{ step.step_text }}
+                                        </p>
+                                    {% empty %}
+                                        <p>No steps</p>
+                                    {% endfor %}
+                                </div>
+                            </td>
+
+                            <td style="max-width:200px;">
+                                {{ p.description|truncatewords:15 }}
+                            </td>
+                            
+                            {% comment %} <td>
+                                {% if p.plan_type == 'free' %}
+                                    <span style="color:green;"><b>Free</b></span>
+                                {% else %}
+                                    <span style="color:red;"><b>Paid</b></span>
+                                {% endif %}
+                            </td> {% endcomment %}
+
+                            <td>
+                                {% if p.plan_type == 'paid' %}
+                                    ₹{{ p.price }}
+                                {% else %}
+                                    Free
+                                {% endif %}
+                            </td>
+                            <td>
+
+                                <a href="{% url 'join_diet_plan' p.id %}"
+                                class="btn btn-success btn-sm mb-1">
+                                Join
+                                </a>
+
+                                <br>
+
+                                <a href="{% url 'request_custom_diet' p.id %}"
+                                class="btn btn-warning btn-sm">
+                                Request
+                                </a>
+
+                            </td>
+
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-danger text-center">
+                                No diet plans found
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+{% endblock %}

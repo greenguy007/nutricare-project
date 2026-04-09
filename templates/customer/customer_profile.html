@@ -1,0 +1,17 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card text-center p-4" style="width: 400px;">
+        <center><img src="{{ customer.image.url }}" class="rounded-circle mb-3" width="120"></center>
+        <p><strong>Username:</strong> {{ customer.login.username }}</p>
+        <p><strong>Name:</strong> {{ customer.full_name }}</p>
+        <p><strong>Email:</strong> {{ customer.email }}</p>
+        <p><strong>Phone:</strong> {{ customer.phone }}</p>
+        <p><strong>Address:</strong> {{ customer.address }}</p>
+
+        <a href="{% url 'edit_customer_profile' %}" class="btn btn-primary mt-2">Edit Profile</a>
+    </div>
+</div>
+
+{% endblock %}

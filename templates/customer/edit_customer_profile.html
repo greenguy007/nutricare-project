@@ -1,0 +1,38 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-4" style="width: 400px;">
+        <h4 class="text-center mb-3">Edit Profile</h4>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Login table fields -->
+            <input type="text" class="form-control mb-2"
+                   value="{{ customer.login.username }}" readonly>
+
+            <input type="email" class="form-control mb-2"
+                   value="{{ customer.login.email }}" readonly>
+
+            <!-- Customer table fields -->
+            <input type="text" name="full_name"
+                   value="{{ customer.full_name }}"
+                   class="form-control mb-2" required>
+
+            <input type="text" name="phone"
+                   value="{{ customer.phone }}"
+                   class="form-control mb-2" required>
+
+            <textarea name="address"
+                      class="form-control mb-2"
+                      required>{{ customer.address }}</textarea>
+
+            <input type="file" name="image" class="form-control mb-3">
+
+            <button class="btn btn-success w-100">Update</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .title-box .page-title-heading h1 { font-size: 30px !important; line-height: 40px !important; }
+    h3.font-18 { font-size: 16px !important; }
+</style>
+
+<!-- page-title -->
+<div class="ttm-page-title-row">
+    <div class="ttm-page-title-row-bg-layer ttm-bg-layer"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center"> 
+                <div class="title-box ttm-textcolor-white">
+                    <div class="page-title-heading ttm-textcolor-white">
+                        <h1 class="title">Login</h1>
+                    </div>
+                    <div class="breadcrumb-wrapper">
+                        <span>
+                            <a title="Homepage" href="/"><i class="ti ti-home"></i> Home </a>
+                        </span>
+                        <span class="ttm-bread-sep"> &nbsp; :&nbsp;: &nbsp; </span>
+                        <span><span class="ttm-textcolor-skincolor">Login</span></span>
+                    </div>  
+                </div>
+            </div>  
+        </div>  
+    </div>                      
+</div>
+<!-- page-title end-->
+
+<!--site-main start-->
+<div class="site-main">
+
+    <!--contact-top-section-->
+    <section class="ttm-row contact-top-section ttm-bgcolor-grey clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="featured-icon-box without-icon ttm-bgcolor-skincolor spacing-11">
+                                <div class="featured-title">
+                                    <h5 class="mb-15">Welcome Back</h5>
+                                </div>
+                                <div class="featured-desc">
+                                    <p>Please login to access your dashboard.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="featured-icon-box without-icon ttm-bgcolor-skincolor spacing-11">
+                                <div class="featured-title">
+                                    <h5 class="mb-15">New User?</h5>
+                                </div>
+                                <div class="featured-desc">
+                                    <p>Register as a Customer or Dietician.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </section>
+    <!--contact-top-section end-->
+
+    <!--contact-form-section-->
+    <section class="ttm-row contact-form-section clearfix">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="pt-50">
+                        <h3 class="font-18">User Login</h3>
+                        <p>Enter your username and password to continue.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="row spacing-12 box-shadow1 ttm-bgcolor-white mb-25">
+                        <div class="col-md-12">
+                            <br>
+                            <h4>Login Here</h4>
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p style="color:red;">{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form method="post" class="ttm-contactform wrap-form clearfix">
+                                {% csrf_token %}
+
+                                <label>
+                                    <span class="text-input">
+                                        <input type="text" name="username" placeholder="Username" required>
+                                    </span>
+                                </label>
+
+                                <label>
+                                    <span class="text-input">
+                                        <input type="password" name="password" placeholder="Password" required>
+                                    </span>
+                                </label>
+
+                                <input type="submit"
+                                       class="submit ttm-btn ttm-btn-size-md ttm-btn-shape-round ttm-btn-style-fill ttm-btn-bgcolor-skincolor mb-5"
+                                       value="Login">
+                            </form>
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--contact-form-section end-->
+
+</div>
+<!--site-main end-->
+
+{% endblock %}

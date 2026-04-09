@@ -1,0 +1,44 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h4 class="text-center mb-3">All Foods Added</h4>
+
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Meal Type</th>
+                <th>Calories</th>
+                <th>Carbs</th>
+                <th>Protein</th>
+                <th>Fat</th>
+                <th>Zinc</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for food in foods %}
+            <tr>
+                <td>{{ food.name }}</td>
+                <td>{{ food.get_meal_type_display }}</td>
+                <td>{{ food.calories }}</td>
+                <td>{{ food.carbs }}</td>
+                <td>{{ food.protein }}</td>
+                <td>{{ food.fat }}</td>
+                <td>{{ food.zinc }}</td>
+                <td>
+                    <a href="{% url 'edit_food' food.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{% url 'delete_food' food.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No foods added yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<br>
+{% endblock %}

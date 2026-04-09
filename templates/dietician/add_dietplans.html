@@ -1,0 +1,139 @@
+{% extends 'dietician/common.html' %}
+{% load static %}
+{% block content %}
+
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+
+                    <div style="background:white; padding:25px; border-radius:10px; box-shadow:0 0 10px lightgray;">
+
+                        <h3 class="mb-4 text-center">Add Diet Plan</h3>
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <!-- Plan Name -->
+                            <div class="mb-3">
+                                <input type="text" name="plan_name"
+                                       class="form-control"
+                                       placeholder="Diet Plan Name" required>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <textarea name="description"
+                                          class="form-control"
+                                          rows="3"
+                                          placeholder="Description" required></textarea>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="mb-3">
+                                <input type="file" name="image" class="form-control" required>
+                            </div>
+
+                            <!-- Plan Type -->
+                            <div class="mb-3">
+                                <select name="plan_type" class="form-control"
+                                        onchange="togglePrice(this)" required>
+                                    <option value="free">Free Plan</option>
+                                    <option value="paid">Paid Plan</option>
+                                </select>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="mb-3" id="price-field" style="display:none;">
+                                <input type="number" name="price"
+                                       class="form-control"
+                                       placeholder="Enter Price">
+                            </div>
+
+                            <!-- Steps -->
+                            <h5 class="mt-4">Diet Steps</h5>
+
+                            <div id="steps-wrapper">
+                                <div class="step-row mb-2 d-flex">
+                                    <input type="text" name="steps[]"
+                                           class="form-control me-2"
+                                           placeholder="Step 1" required>
+
+                                    <button type="button"
+                                            class="btn btn-danger"
+                                            onclick="removeStep(this)">
+                                        X
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Add Step Button -->
+                            <button type="button"
+                                    class="btn btn-secondary mb-3"
+                                    onclick="addStep()">
+                                + Add Step
+                            </button>
+
+                            <!-- Submit -->
+                            <div class="text-center">
+                                <input type="submit"
+                                       class="btn btn-success px-4"
+                                       value="Add Diet Plan">
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<!-- JS -->
+<script>
+let stepCount = 1;
+
+function addStep() {
+    stepCount++;
+
+    const wrapper = document.getElementById('steps-wrapper');
+
+    const div = document.createElement('div');
+    div.className = 'step-row mb-2 d-flex';
+
+    div.innerHTML = `
+        <input type="text" name="steps[]"
+               class="form-control me-2"
+               placeholder="Step ${stepCount}" required>
+
+        <button type="button"
+                class="btn btn-danger"
+                onclick="removeStep(this)">
+            X
+        </button>
+    `;
+
+    wrapper.appendChild(div);
+}
+
+function removeStep(btn) {
+    btn.parentElement.remove();
+}
+
+function togglePrice(select) {
+    const priceField = document.getElementById('price-field');
+
+    if (select.value === 'paid') {
+        priceField.style.display = 'block';
+    } else {
+        priceField.style.display = 'none';
+    }
+}
+</script>
+
+{% endblock %}

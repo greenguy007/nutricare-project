@@ -1,0 +1,32 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-4" style="width:500px;">
+        <h4 class="text-center mb-3">Add Food & Nutrients</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="name" class="form-control mb-2" placeholder="Food Name" required>
+
+            <select name="meal_type" class="form-control mb-2" required>
+                <option value="">Select Meal Type</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="snack">Snack</option>
+                <option value="dinner">Dinner</option>
+            </select>
+
+            <input type="number" step="0.01" name="calories" class="form-control mb-2" placeholder="Calories (kcal)" required>
+            <input type="number" step="0.01" name="carbs" class="form-control mb-2" placeholder="Carbohydrates (g)" required>
+            <input type="number" step="0.01" name="protein" class="form-control mb-2" placeholder="Protein (g)" required>
+            <input type="number" step="0.01" name="fat" class="form-control mb-2" placeholder="Fat (g)" required>
+            <input type="number" step="0.01" name="zinc" class="form-control mb-3" placeholder="Zinc (mg)" required>
+
+            <button class="btn btn-success w-100">Add Food</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

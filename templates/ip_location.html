@@ -1,0 +1,37 @@
+{% extends 'common.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h4 class="mb-3 text-center">System / Client IP Details</h4>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>IP Address</th>
+                <td>{{ ip }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ country }}</td>
+            </tr>
+            <tr>
+                <th>State / Region</th>
+                <td>{{ region }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ city }}</td>
+            </tr>
+            <tr>
+                <th>ISP</th>
+                <td>{{ isp }}</td>
+            </tr>
+        </table>
+
+        <p class="text-muted text-center">
+            * Location is approximate based on IP address
+        </p>
+    </div>
+</div>
+
+{% endblock %}

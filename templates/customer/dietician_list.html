@@ -1,0 +1,85 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<style>
+    .dietician-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .dietician-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+
+    .dietician-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .dietician-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid green;
+    }
+
+    .dietician-info {
+        flex: 1;
+    }
+
+    .dietician-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .chat-btn {
+        padding: 8px 16px;
+        background: green;
+        color: white;
+        text-decoration: none;
+        border-radius: 20px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .chat-btn:hover {
+        background: darkgreen;
+    }
+
+    @media (max-width: 600px) {
+        .dietician-card {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+
+<h2 style="text-align:center; margin-top:20px;">Available Dieticians</h2>
+
+<div class="dietician-container">
+    {% for d in dieticians %}
+        <div class="dietician-card">
+            <img src="{{ d.image.url }}" class="dietician-img">
+
+            <div class="dietician-info">
+                <div class="dietician-name">{{ d.full_name }}</div>
+            </div>
+
+            <a href="{% url 'customer_chat' d.id %}" class="chat-btn">
+                Chat
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

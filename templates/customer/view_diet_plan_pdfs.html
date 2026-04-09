@@ -1,0 +1,37 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="container">
+    <h3 class="mb-20">Diet Plan PDFs</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Dietician</th>
+                <th>Title</th>
+                <th>PDF</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in pdfs %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ p.dietician.username }}</td>
+                <td>{{ p.title }}</td>
+                <td>
+                    <a href="{{ p.pdf_file.url }}" target="_blank" class="btn btn-sm btn-success">
+                        Download
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No PDFs available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

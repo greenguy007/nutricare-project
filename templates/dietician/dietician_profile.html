@@ -1,0 +1,17 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card text-center p-4" style="width: 400px;">
+        <center><img src="{{ dietician.image.url }}" class="rounded-circle mb-3" width="120"></center>
+        <p><strong>Username:</strong> {{ dietician.login.username }}</p>
+        <p><strong>Name:</strong> {{ dietician.full_name }}</p>
+        <p><strong>Email:</strong> {{ dietician.email }}</p>
+        <p><strong>Phone:</strong> {{ dietician.phone }}</p>
+        <p><strong>Address:</strong> {{ dietician.address }}</p>
+
+        <a href="{% url 'edit_dietician_profile' %}" class="btn btn-primary mt-2">Edit Profile</a>
+    </div>
+</div>
+
+{% endblock %}

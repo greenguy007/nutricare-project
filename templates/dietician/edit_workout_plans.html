@@ -1,0 +1,217 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<style>
+.container-box{
+    max-width:800px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+h3,h4{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+input, textarea, select{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+label{
+    font-weight:600;
+    margin-top:10px;
+    display:block;
+}
+
+.preview-img{
+    width:100%;
+    max-height:200px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.preview-video{
+    width:100%;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+
+.step-box{
+    border:1px solid #ddd;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    background:#fafafa;
+}
+
+.btn{
+    padding:8px 14px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.delete{background:red;color:white}
+.save{background:green;color:white;width:100%;margin-top:10px}
+.add{background:blue;color:white;margin-top:10px}
+
+@media(max-width:768px){
+    .container-box{
+        margin:10px;
+        padding:15px;
+    }
+}
+</style>
+
+<div class="container-box">
+
+    <h3>Edit Workout Plan</h3>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- PLAN DETAILS -->
+        <label>Title</label>
+        <input type="text" name="title" value="{{ plan.title }}" required>
+
+        <label>Description</label>
+        <textarea name="description" required>{{ plan.description }}</textarea>
+
+        <!-- ✅ PLAN TYPE -->
+        <label>Plan Type</label>
+        <select name="plan_type" id="plan_type" onchange="togglePrice()" required>
+            <option value="free" {% if plan.is_free %}selected{% endif %}>Free</option>
+            <option value="paid" {% if not plan.is_free %}selected{% endif %}>Paid</option>
+        </select>
+
+        <div id="price-field" style="{% if plan.is_free %}display:none;{% endif %}">
+            <label>Price (₹)</label>
+            <input type="number" name="price" step="0.01" id="price-input" value="{{ plan.price }}">
+        </div>
+
+        <!-- IMAGE -->
+        <label>Current Image</label>
+        {% if plan.image %}
+            <img src="{{ plan.image.url }}" class="preview-img">
+        {% else %}
+            <p>No image uploaded</p>
+        {% endif %}
+
+        <label>Change Image</label>
+        <input type="file" name="image">
+
+        <!-- VIDEO -->
+        <label>Current Video</label>
+        {% if plan.video %}
+            <video controls class="preview-video">
+                <source src="{{ plan.video.url }}">
+            </video>
+        {% else %}
+            <p>No video uploaded</p>
+        {% endif %}
+
+        <label>Change Video</label>
+        <input type="file" name="video">
+
+        <hr>
+
+        <!-- EXISTING STEPS -->
+        <h4>Edit Steps</h4>
+
+        {% for step in steps %}
+        <div class="step-box">
+
+            <input type="hidden" name="step_id" value="{{ step.id }}">
+
+            <label>Step Number</label>
+            <input type="number" name="step_number_{{ step.id }}" value="{{ step.step_number }}">
+
+            <label>Step Title</label>
+            <input type="text" name="step_title_{{ step.id }}" value="{{ step.title }}">
+
+            <label>Description</label>
+            <textarea name="step_description_{{ step.id }}">{{ step.description }}</textarea>
+
+            {% if step.image %}
+                <img src="{{ step.image.url }}" class="preview-img">
+            {% endif %}
+
+            <label>Change Step Image</label>
+            <input type="file" name="step_image_{{ step.id }}">
+
+            <a href="{% url 'delete_workout_step' step.id %}"
+               onclick="return confirm('Delete this step?')"
+               class="btn delete">Delete Step</a>
+
+        </div>
+        {% endfor %}
+
+        <hr>
+
+        <!-- ADD NEW STEPS -->
+        <h4>Add New Steps</h4>
+
+        <div id="newSteps"></div>
+
+        <button type="button" class="btn add" onclick="addStep()">
+            + Add Step
+        </button>
+
+        <button type="submit" class="btn save">
+            Update Workout Plan
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+function togglePrice() {
+    const type = document.getElementById('plan_type').value;
+    const priceField = document.getElementById('price-field');
+    const priceInput = document.getElementById('price-input');
+
+    if (type === 'paid') {
+        priceField.style.display = 'block';
+        priceInput.required = true;
+    } else {
+        priceField.style.display = 'none';
+        priceInput.required = false;
+        priceInput.value = '';
+    }
+}
+
+// run when page loads
+window.onload = function(){
+    togglePrice();
+}
+
+function addStep(){
+    document.getElementById('newSteps').insertAdjacentHTML('beforeend', `
+        <div class="step-box">
+            <label>Step Number</label>
+            <input type="number" name="new_step_number" required>
+
+            <label>Step Title</label>
+            <input type="text" name="new_step_title" required>
+
+            <label>Description</label>
+            <textarea name="new_step_description" required></textarea>
+
+            <label>Step Image</label>
+            <input type="file" name="new_step_image" required>
+        </div>
+    `);
+}
+</script>
+
+{% endblock %}

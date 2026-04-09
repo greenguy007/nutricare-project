@@ -1,0 +1,31 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-4" style="width:500px;">
+        <h4 class="text-center mb-3">Edit Food & Nutrients</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="name" class="form-control mb-2" placeholder="Food Name" value="{{ food.name }}" required>
+
+            <select name="meal_type" class="form-control mb-2" required>
+                <option value="breakfast" {% if food.meal_type == 'breakfast' %}selected{% endif %}>Breakfast</option>
+                <option value="lunch" {% if food.meal_type == 'lunch' %}selected{% endif %}>Lunch</option>
+                <option value="snack" {% if food.meal_type == 'snack' %}selected{% endif %}>Snack</option>
+                <option value="dinner" {% if food.meal_type == 'dinner' %}selected{% endif %}>Dinner</option>
+            </select>
+
+            <input type="number" step="0.01" name="calories" class="form-control mb-2" placeholder="Calories (kcal)" value="{{ food.calories }}" required>
+            <input type="number" step="0.01" name="carbs" class="form-control mb-2" placeholder="Carbohydrates (g)" value="{{ food.carbs }}" required>
+            <input type="number" step="0.01" name="protein" class="form-control mb-2" placeholder="Protein (g)" value="{{ food.protein }}" required>
+            <input type="number" step="0.01" name="fat" class="form-control mb-2" placeholder="Fat (g)" value="{{ food.fat }}" required>
+            <input type="number" step="0.01" name="zinc" class="form-control mb-3" placeholder="Zinc (mg)" value="{{ food.zinc }}" required>
+
+            <button class="btn btn-success w-100">Update Food</button>
+        </form>
+    </div>
+</div>
+<br>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-4" style="width:400px;">
+        <h4 class="text-center mb-3">Upload Diet Plan PDF</h4>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input type="text" name="title" class="form-control mb-2" placeholder="Diet Plan Title" required>
+
+            <input type="file" name="pdf_file" accept="application/pdf" class="form-control mb-3" required>
+
+            <button class="btn btn-success w-100">Upload</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

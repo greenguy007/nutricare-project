@@ -1,0 +1,29 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+<br>
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 shadow" style="width: 450px;">
+        <h4 class="text-center mb-3">Edit Diet Plan PDF</h4>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label>Title</label>
+                <input type="text" name="title" value="{{ pdf.title }}" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Replace PDF (optional)</label>
+                <input type="file" name="pdf_file" class="form-control">
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-success">Update</button>
+                <a href="{% url 'view_diet_plan_pdfs' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+{% endblock %}

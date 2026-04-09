@@ -1,0 +1,65 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="container">
+    <h3 class="mb-3">Custom Diet Requests</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Customer</th>
+                <th>Plan</th>
+                <th>Notes (Allergies / Preferences)</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in requests %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ r.customer.full_name }}</td>
+                <td>{{ r.diet_plan.plan_name }}</td>
+                <td>
+                    <div style="width:300px; max-height:120px; overflow:auto;">
+                        {{ r.notes }}
+                    </div>
+                </td>
+                <td>
+                    {% if r.status == 'pending' %}
+                        <span class="badge bg-warning">Pending</span>
+                    {% elif r.status == 'approved' %}
+                        <span class="badge bg-success">Approved</span>
+                    {% else %}
+                        <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if r.status == 'pending' %}
+                        <a href="{% url 'approve_custom_diet_request' r.id %}"
+                           class="btn btn-success btn-sm">
+                           Create Custom Plan
+                        </a>
+
+                        <a href=""
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Reject this request?')">
+                           Reject
+                        </a>
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No requests found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

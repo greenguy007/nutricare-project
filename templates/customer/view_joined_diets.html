@@ -1,0 +1,55 @@
+{% extends 'customer/common.html' %}
+{% block content %}
+
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+
+            <h3 class="mb-4 text-center">My Joined Diet Plans</h3>
+
+            {% for item in data %}
+            <div style="background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px lightgray; margin-bottom:20px;">
+
+                <h4>{{ item.jp.diet_plan.plan_name }}</h4>
+                <p>{{ item.jp.diet_plan.description }}</p>
+
+                <form method="post" action="{% url 'update_diet_steps' item.jp.id %}">
+                    {% csrf_token %}
+
+                    {% for step in item.jp.customerdietstep_set.all %}
+                        <div style="margin-bottom:5px;">
+                            <input type="checkbox"
+                                   name="steps"
+                                   value="{{ step.id }}"
+                                   {% if step.is_completed %}checked{% endif %}>
+
+                            <strong>Step {{ forloop.counter }}:</strong>
+                            {{ step.diet_step.step_text }}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-primary btn-sm mt-2">
+                        Update Progress
+                    </button>
+                </form>
+
+                <!-- ✅ Feedback Button -->
+                {% if item.all_done and not item.feedback_given %}
+                    <a href="{% url 'add_feedback' item.jp.diet_plan.id %}"
+                       class="btn btn-success btn-sm mt-3">
+                       Give Feedback
+                    </a>
+                {% elif item.feedback_given %}
+                    <p style="color:green; margin-top:10px;">Feedback submitted ✔</p>
+                {% endif %}
+
+            </div>
+            {% empty %}
+            <p>No joined diet plans</p>
+            {% endfor %}
+
+        </div>
+    </section>
+</div>
+
+{% endblock %}

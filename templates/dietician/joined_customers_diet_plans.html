@@ -1,0 +1,43 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h3>Joined Customers Diet Plans</h3>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Diet Plan</th>
+                <th>Customer</th>
+                <th>Completed Steps</th>
+                <th>Total Steps</th>
+                <th>Completion %</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ d.plan_name }}</td>
+                <td>{{ d.customer }}</td>
+                <td>{{ d.completed }}</td>
+                <td>{{ d.total }}</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" style="width: {{ d.percentage }}%">
+                            {{ d.percentage }}%
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No customers joined yet</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

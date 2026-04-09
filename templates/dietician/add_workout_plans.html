@@ -1,0 +1,201 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<style>
+.workout-container {
+    max-width: 650px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.workout-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: blue;
+    font-size: 22px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    font-size: 14px;
+}
+
+.steps-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    color: black;
+}
+
+.step-box {
+    background: lightgray;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.add-step-btn {
+    background: gray;
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+</style>
+
+<div class="workout-container">
+
+    <h2>Add Workout Plan</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Workout Title</label>
+            <input type="text" name="title" required>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Plan Image</label>
+            <input type="file" name="plan_image" accept="image/*" required>
+        </div>
+
+        <div class="form-group">
+            <label>Workout Video (optional)</label>
+            <input type="file" name="plan_video" accept="video/*">
+        </div>
+
+        <!-- ✅ NEW: FREE / PAID -->
+        <div class="form-group">
+            <label>Plan Type</label>
+            <select name="plan_type" id="plan_type" onchange="togglePrice()" required>
+                <option value="free">Free</option>
+                <option value="paid">Paid</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="price-field" style="display:none;">
+            <label>Price (₹)</label>
+            <input type="number" name="price" step="0.01" id="price-input">
+        </div>
+
+        <div class="steps-title">Workout Steps</div>
+
+        <div id="steps-container">
+            <div class="step-box">
+                <div class="form-group">
+                    <label>Step No</label>
+                    <input type="number" name="step_number" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Step Title</label>
+                    <input type="text" name="step_title" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Step Description</label>
+                    <textarea name="step_description" rows="2" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Step Image</label>
+                    <input type="file" name="step_image" accept="image/*" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="add-step-btn" onclick="addStep()">+ Add Step</button>
+
+        <button type="submit" class="submit-btn">Save Workout Plan</button>
+    </form>
+
+</div>
+
+<script>
+function togglePrice() {
+    const type = document.getElementById('plan_type').value;
+    const priceField = document.getElementById('price-field');
+    const priceInput = document.getElementById('price-input');
+
+    if (type === 'paid') {
+        priceField.style.display = 'block';
+        priceInput.required = true;
+    } else {
+        priceField.style.display = 'none';
+        priceInput.required = false;
+        priceInput.value = '';
+    }
+}
+
+function addStep() {
+    const container = document.getElementById('steps-container');
+
+    const stepHTML = `
+    <div class="step-box">
+        <div class="form-group">
+            <label>Step No</label>
+            <input type="number" name="step_number" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <label>Step Title</label>
+            <input type="text" name="step_title" required>
+        </div>
+
+        <div class="form-group">
+            <label>Step Description</label>
+            <textarea name="step_description" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Step Image</label>
+            <input type="file" name="step_image" accept="image/*" required>
+        </div>
+    </div>
+    `;
+
+    container.insertAdjacentHTML('beforeend', stepHTML);
+}
+</script>
+
+{% endblock %}

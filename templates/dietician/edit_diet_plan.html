@@ -1,0 +1,68 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+
+            <h3 class="mb-20">Edit Diet Plan</h3>
+
+            <form method="post" enctype="multipart/form-data"
+                  class="ttm-contactform wrap-form clearfix">
+                {% csrf_token %}
+
+                <label>
+                    <span class="text-input">
+                        <input type="text" name="plan_name"
+                               value="{{ diet_plan.plan_name }}" required>
+                    </span>
+                </label>
+
+                <label>
+                    <span class="text-input">
+                        <textarea name="description" rows="3" required>{{ diet_plan.description }}</textarea>
+                    </span>
+                </label>
+
+                <label>
+                    <span class="text-input">
+                        <input type="file" name="image">
+                    </span>
+                </label>
+
+                <h5 class="mt-20">Diet Steps</h5>
+
+                <div id="steps-wrapper">
+                    {% for s in steps %}
+                        <input type="text" name="steps[]"
+                               value="{{ s.step_text }}"
+                               class="form-control mb-2">
+                    {% endfor %}
+                </div>
+
+                <button type="button" class="btn btn-secondary mb-20" onclick="addStep()">
+                    + Add Step
+                </button>
+
+                <input type="submit"
+                       class="submit ttm-btn ttm-btn-size-md ttm-btn-bgcolor-skincolor"
+                       value="Update Diet Plan">
+            </form>
+
+        </div>
+    </section>
+</div>
+
+<script>
+function addStep() {
+    const wrapper = document.getElementById('steps-wrapper');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'steps[]';
+    input.className = 'form-control mb-2';
+    input.placeholder = 'New Step';
+    wrapper.appendChild(input);
+}
+</script>
+
+{% endblock %}

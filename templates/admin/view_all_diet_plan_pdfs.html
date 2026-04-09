@@ -1,0 +1,39 @@
+{% extends 'admin/common.html' %}
+{% block content %}
+
+<div class="container">
+    <h3 class="mb-20">All Diet Plan PDFs</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Dietician</th>
+                <th>Title</th>
+                <th>PDF</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in pdfs %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ p.dietician.username }}</td>
+                <td>{{ p.title }}</td>
+                <td>
+                    <a href="{{ p.pdf_file.url }}" target="_blank" class="btn btn-sm btn-info">
+                        View
+                    </a>
+                </td>
+                <td>{{ p.uploaded_at|date:"d-m-Y" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No PDFs uploaded</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

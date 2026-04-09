@@ -1,0 +1,160 @@
+{% extends 'dietician/common.html' %}
+{% block content %}
+
+<style>
+    .wp-container{
+        max-width:1000px;
+        margin:30px auto;
+        background:white;
+        padding:20px;
+        border-radius:12px;
+        box-shadow:0 0 15px rgba(0,0,0,0.1);
+    }
+    .wp-title{text-align:center;margin-bottom:20px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:12px;text-align:center;border-bottom:1px solid #ddd}
+    th{background:#4CAF50;color:white}
+
+    /* SMALL FIXED IMAGES */
+    .wp-img{
+        width:50px;
+        height:50px;
+        object-fit:cover;
+        border-radius:6px;
+    }
+
+    .step-img{
+        width:120px;
+        height:80px;
+        object-fit:cover;
+        border-radius:6px;
+        display:block;
+        margin-top:8px;
+    }
+
+    .btn{
+        padding:6px 12px;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;
+        font-size:13px;
+    }
+    .view{background:#2196F3;color:white}
+    .edit{background:#FF9800;color:white}
+    .delete{background:#F44336;color:white}
+
+    /* Modal */
+    .modal{
+        display:none;
+        position:fixed;
+        top:0;left:0;
+        width:100%;height:100%;
+        background:rgba(0,0,0,0.6);
+        justify-content:center;
+        align-items:center;
+    }
+    .modal-content{
+        background:white;
+        width:90%;
+        max-width:600px;
+        padding:20px;
+        border-radius:10px;
+        max-height:80vh;
+        overflow-y:auto;
+    }
+    .close{
+        float:right;
+        cursor:pointer;
+        font-size:18px;
+    }
+
+    @media(max-width:768px){
+        table,thead,tbody,tr,td,th{display:block}
+        thead{display:none}
+        tr{margin-bottom:15px;border:1px solid #ccc;padding:10px;border-radius:10px}
+        td{text-align:left}
+        td::before{content:attr(data-label);font-weight:bold;display:block}
+        .wp-img{width:45px;height:45px}
+        .step-img{width:100px;height:70px}
+    }
+</style>
+
+
+<div class="wp-container">
+    <h2 class="wp-title">Workout Plans</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Video</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plan in plans %}
+            <tr>
+                <td data-label="Image">
+                    <img src="{{ plan.image.url }}" class="wp-img">
+                </td>
+
+                <td data-label="Video">
+                    {% if plan.video %}
+                        <video width="100" height="60" controls style="border-radius:6px;">
+                            <source src="{{ plan.video.url }}">
+                        </video>
+                    {% else %}
+                        No Video
+                    {% endif %}
+                </td>
+
+                <td data-label="Title">{{ plan.title }}</td>
+
+                <td data-label="Description">{{ plan.description }}</td>
+                <td data-label="Price">
+                    {% if plan.is_free %}
+                        Free
+                    {% else %}
+                        ${{ plan.price }}
+                    {% endif %}
+
+                <td data-label="Actions">
+                    <button class="btn view" onclick="openModal('{{ plan.id }}')">Steps</button>
+                    <a href="{% url 'edit_workout_plan' plan.id %}" class="btn edit">Edit</a>
+                    <a href="{% url 'delete_workout_plan' plan.id %}" class="btn delete"
+                    onclick="return confirm('Delete this plan?')">Delete</a>
+                </td>
+            </tr>
+
+            <!-- Modal -->
+            <div id="modal{{ plan.id }}" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('{{ plan.id }}')">&times;</span>
+                    <h3>{{ plan.title }} - Steps</h3>
+                    {% for step in plan.workoutstep_set.all %}
+                        <hr>
+                        <h4>Step {{ step.step_number }}: {{ step.title }}</h4>
+                        <p>{{ step.description }}</p>
+                        <img src="{{ step.image.url }}" class="step-img">
+
+                    {% empty %}
+                        <p>No steps added</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+function openModal(id){document.getElementById('modal'+id).style.display='flex'}
+function closeModal(id){document.getElementById('modal'+id).style.display='none'}
+</script>
+
+{% endblock %}
