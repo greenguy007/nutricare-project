@@ -1,0 +1,401 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good morning", "Good evening",
+        "I need diet advice", "Can you help with my health?",
+        "Nutrition help needed", "Diet guidance", "I want to be healthy",
+        "Help me with my diet", "hey there", "hi there", "hello bot"
+      ],
+      "responses": [
+        "Hello! I'm NutriScan AI 🤖. I can help you with BMI, SMR, diet plans, healthy foods, and nutrition tips. What would you like to check today?",
+        "Hi! Welcome to NutriScan. I can analyze your BMI, suggest diet plans, and guide you toward a healthier lifestyle.",
+        "Hey there! I'm your nutrition assistant. Would you like help with BMI, SMR, or diet plans?"
+      ]
+    },
+    {
+      "tag": "bmi_check",
+      "patterns": [
+        "What is BMI?", "Check my BMI", "Calculate BMI", "Is my weight healthy?",
+        "BMI meaning", "How to know my BMI?", "BMI calculation help", "BMI", "bmi"
+      ],
+      "responses": [
+        "BMI (Body Mass Index) is a measure based on your height and weight. You can add your BMI in the BMI section to know if you're underweight, healthy, or overweight.",
+        "To calculate BMI, we need your height and weight. NutriScan will classify your health status once you submit it.",
+        "BMI helps assess whether your body weight is healthy for your height."
+      ]
+    },
+    {
+      "tag": "bmi_result",
+      "patterns": [
+        "My BMI is low", "I am overweight", "BMI result meaning", "BMI normal range",
+        "Am I healthy?", "BMI status", "bmi status"
+      ],
+      "responses": [
+        "BMI categories are: Underweight (<18.5), Healthy (18.5–24.9), Overweight (25–29.9), and Obese (30+). Your diet plan should match your BMI category.",
+        "Based on your BMI, NutriScan can suggest suitable diet plans created by dieticians.",
+        "Maintaining a healthy BMI reduces health risks and improves energy levels."
+      ]
+    },
+    {
+      "tag": "smr_check",
+      "patterns": [
+        "What is SMR?", "Calculate SMR", "Check my metabolism", "SMR meaning",
+        "What is resting metabolism?", "SMR value explanation", "SMR", "smr"
+      ],
+      "responses": [
+        "SMR (Sleeping Metabolic Rate) shows how many calories your body burns at rest. It helps plan calorie intake accurately.",
+        "Your SMR helps dieticians recommend calorie-based diet plans suitable for your body.",
+        "A healthy SMR supports better weight management and energy balance."
+      ]
+    },
+    {
+      "tag": "diet_plan",
+      "patterns": [
+        "Suggest a diet plan", "Diet plan for weight loss", "Healthy diet plan", "Weight gain diet",
+        "Balanced diet", "Show diet plans", "Diet plan PDFs", "Diet", "diet"
+      ],
+      "responses": [
+        "NutriScan offers diet plans created by certified dieticians. You can view diet plans and even download PDF versions.",
+        "Your diet plan should match your BMI and SMR values for best results.",
+        "Choose a diet plan that fits your health goal: weight loss, weight gain, or maintenance."
+      ]
+    },
+    
+    {
+      "tag": "diet_steps",
+      "patterns": [
+        "Diet steps", "Daily diet routine", "What should I eat daily?", "Diet plan steps",
+        "Meal plan steps", "Diet routine"
+      ],
+      "responses": [
+        "Each diet plan includes step-by-step instructions like meals, hydration, and lifestyle tips.",
+        "You can mark diet steps as completed and track your progress percentage.",
+        "Following diet steps consistently improves results."
+      ]
+    },
+    {
+      "tag": "healthy_foods",
+      "patterns": [
+        "Healthy foods", "What should I eat?", "Nutrition advice", "Foods for good health",
+        "Balanced food list", "Protein rich foods", "Low calorie foods", "Food", "nutrition"
+      ],
+      "responses": [
+        "A healthy diet includes fruits, vegetables, whole grains, lean proteins, and healthy fats.",
+        "Choose foods based on your BMI and health goals.",
+        "Avoid excess sugar, junk food, and processed items for better health."
+      ]
+    },
+    {
+      "tag": "progress_tracking",
+      "patterns": [
+        "Track my diet progress", "Diet completion percentage", "How am I doing?",
+        "Progress report", "Diet success", "Progress"
+      ],
+      "responses": [
+        "NutriScan tracks your completed diet steps and shows your progress percentage.",
+        "Higher consistency leads to better results.",
+        "Keep following your diet plan step by step for success."
+      ]
+    },
+    {
+      "tag": "feedback",
+      "patterns": [
+        "Thanks", "Thank you", "That helps", "Good advice", "Helpful", "Understood", "Makes sense"
+      ],
+      "responses": [
+        "You're welcome! Stay healthy with NutriScan 💚",
+        "Happy to help! Let me know if you want diet or nutrition guidance.",
+        "Great! Keep tracking your health regularly."
+      ]
+    },
+    {
+  "tag": "exercise_advice",
+  "patterns": [
+    "What exercises should I do?",
+    "Exercise tips",
+    "Workout plan",
+    "How to stay fit?",
+    "Fitness advice",
+    "Daily exercises",
+    "Exercise routine"
+  ],
+  "responses": [
+    "Regular exercise is essential. You can try cardio, strength training, or yoga based on your goal.",
+    "NutriScan can suggest daily exercise routines for weight loss, weight gain, or maintenance.",
+    "Remember, consistency matters more than intensity. Start small and gradually increase."
+  ],
+  "suggestions": [
+    "Show workout plan",
+    "Exercises for weight loss",
+    "Exercises for muscle gain"
+  ]
+},
+
+{
+  "tag": "hydration",
+  "patterns": [
+    "How much water should I drink?",
+    "Water intake",
+    "Daily hydration",
+    "Water tips",
+    "Drink enough water",
+    "Hydration advice"
+  ],
+  "responses": [
+    "You should aim for at least 8 glasses (2 liters) of water daily, more if you exercise.",
+    "Proper hydration helps with metabolism, skin health, and energy levels.",
+    "NutriScan can remind you to drink water regularly!"
+  ],
+  "suggestions": [
+    "Daily water goal",
+    "Hydration tips",
+    "Remind me to drink water"
+  ]
+},
+{
+  "tag": "weight_management",
+  "patterns": [
+    "How to lose weight?",
+    "Weight gain tips",
+    "Maintain my weight",
+    "Healthy weight advice",
+    "How to manage weight?"
+  ],
+  "responses": [
+    "A healthy weight is maintained by balancing diet, exercise, and sleep.",
+    "NutriScan can suggest a diet and exercise plan tailored to your BMI and goals.",
+    "Tracking your progress regularly helps achieve your target weight safely."
+  ],
+  "suggestions": [
+    "Weight loss diet plan",
+    "Weight gain diet plan",
+    "Track weight progress"
+  ]
+},
+{
+  "tag": "meal_timing",
+  "patterns": [
+    "When should I eat?",
+    "Meal timings",
+    "Breakfast, lunch, dinner tips",
+    "Healthy meal schedule",
+    "Best time to eat"
+  ],
+  "responses": [
+    "It's best to have 3 main meals and 1-2 healthy snacks daily.",
+    "Try to eat breakfast within an hour of waking up and avoid late-night heavy meals.",
+    "NutriScan can suggest a meal schedule based on your diet plan and goals."
+  ],
+  "suggestions": [
+    "Daily meal schedule",
+    "Healthy breakfast options",
+    "Evening snack ideas"
+  ]
+},
+{
+  "tag": "vitamins_supplements",
+  "patterns": [
+    "Do I need vitamins?",
+    "Vitamin supplements",
+    "Nutrition supplements",
+    "Should I take vitamins?",
+    "Vitamin advice"
+  ],
+  "responses": [
+    "A balanced diet usually provides necessary vitamins, but supplements can help if you’re deficient.",
+    "NutriScan can suggest foods rich in specific vitamins or minerals based on your health goal.",
+    "Always consult a dietician before starting supplements."
+  ],
+  "suggestions": [
+    "Vitamin-rich foods",
+    "Daily supplements advice",
+    "Check my nutrient intake"
+  ]
+},
+{
+  "tag": "sleep_advice",
+  "patterns": [
+    "How much sleep do I need?",
+    "Sleep tips",
+    "Better sleep advice",
+    "Improve my sleep",
+    "Rest and recovery"
+  ],
+  "responses": [
+    "Adults should aim for 7-9 hours of sleep per night.",
+    "Good sleep improves metabolism, mental focus, and recovery after workouts.",
+    "NutriScan can suggest bedtime routines for better rest."
+  ],
+  "suggestions": [
+    "Sleep schedule tips",
+    "Improve sleep quality",
+    "Nighttime routine"
+  ]
+},
+{
+  "tag": "food_allergy",
+  "patterns": [
+    "I have a food allergy",
+    "Allergic to nuts",
+    "Gluten intolerance",
+    "Lactose allergy",
+    "Foods I should avoid"
+  ],
+  "responses": [
+    "Make sure to avoid foods that trigger allergies. NutriScan can suggest safe alternatives.",
+    "Always check labels and choose allergy-friendly foods.",
+    "NutriScan can create a diet plan that avoids your allergens while keeping nutrition balanced."
+  ],
+  "suggestions": [
+    "Show safe foods",
+    "Allergy-friendly diet plan",
+    "Check ingredients"
+  ]
+},
+
+{
+  "tag": "digestive_health",
+  "patterns": [
+    "Improve digestion",
+    "Stomach problems",
+    "Foods for gut health",
+    "Constipation help",
+    "Digestion tips"
+  ],
+  "responses": [
+    "Include fiber-rich foods like fruits, vegetables, and whole grains to improve digestion.",
+    "Stay hydrated and exercise regularly for better gut health.",
+    "NutriScan can suggest meals that are easy to digest and gut-friendly."
+  ],
+  "suggestions": [
+    "Foods for digestion",
+    "Daily fiber intake",
+    "Gut-friendly recipes"
+  ]
+},
+{
+  "tag": "heart_health",
+  "patterns": [
+    "Heart healthy diet",
+    "Prevent heart disease",
+    "Cholesterol control",
+    "Foods for heart",
+    "Cardio health tips"
+  ],
+  "responses": [
+    "Eat more fruits, vegetables, whole grains, and healthy fats to support heart health.",
+    "Limit salt, sugar, and processed foods for better cardiovascular health.",
+    "NutriScan can suggest a heart-friendly diet plan based on your health status."
+  ],
+  "suggestions": [
+    "Heart-healthy meals",
+    "Low cholesterol diet",
+    "Cardio-friendly tips"
+  ]
+},
+{
+  "tag": "mental_health",
+  "patterns": [
+    "How to reduce stress?",
+    "Improve mental health",
+    "Foods for brain",
+    "Relaxation tips",
+    "Mood booster diet"
+  ],
+  "responses": [
+    "Foods rich in omega-3, magnesium, and antioxidants support brain and mental health.",
+    "Meditation, proper sleep, and regular exercise help reduce stress.",
+    "NutriScan can suggest meals and lifestyle tips to support a healthy mind."
+  ],
+  "suggestions": [
+    "Stress-reducing foods",
+    "Mind-healthy meals",
+    "Relaxation tips"
+  ]
+},
+{
+  "tag": "immune_support",
+  "patterns": [
+    "Boost immunity",
+    "Foods for immune system",
+    "Prevent illness",
+    "Strengthen immunity",
+    "Immune-boosting diet"
+  ],
+  "responses": [
+    "Include vitamin C, zinc, and protein-rich foods to support immunity.",
+    "A balanced diet and proper sleep strengthen your immune system.",
+    "NutriScan can suggest meals and vitamins to boost your immunity."
+  ],
+  "suggestions": [
+    "Immune-boosting foods",
+    "Vitamins for immunity",
+    "Healthy habits"
+  ]
+},
+{
+  "tag": "meal_prep",
+  "patterns": [
+    "How to meal prep?",
+    "Healthy cooking tips",
+    "Quick healthy meals",
+    "Prepare food in advance",
+    "Meal planning ideas"
+  ],
+  "responses": [
+    "Meal prepping helps you stick to your diet and save time.",
+    "Include a balance of carbs, protein, and vegetables in every meal.",
+    "NutriScan can suggest simple, healthy recipes for your meal prep."
+  ],
+  "suggestions": [
+    "Show meal prep recipes",
+    "Quick healthy meals",
+    "Plan weekly meals"
+  ]
+},
+{
+  "tag": "weight_tracking",
+  "patterns": [
+    "Track my weight",
+    "Weight goal",
+    "How to monitor weight?",
+    "Check progress",
+    "Weight tracking tips"
+  ],
+  "responses": [
+    "NutriScan can help you track your weight and progress over time.",
+    "Regular tracking helps identify trends and adjust diet/exercise accordingly.",
+    "Set realistic goals and celebrate small achievements for motivation."
+  ],
+  "suggestions": [
+    "Log my weight",
+    "Show weight chart",
+    "Set weight goal"
+  ]
+},
+{
+  "tag": "protein_supplements",
+  "patterns": [
+    "Protein intake",
+    "Protein supplements",
+    "How much protein do I need?",
+    "Muscle building diet",
+    "Best protein sources"
+  ],
+  "responses": [
+    "Protein supports muscle growth, repair, and satiety.",
+    "Include lean meats, legumes, eggs, dairy, or protein supplements if needed.",
+    "NutriScan can suggest a daily protein intake based on your weight and activity level."
+  ],
+  "suggestions": [
+    "Daily protein goal",
+    "Protein-rich foods",
+    "Protein supplements advice"
+  ]
+}
+
+    
+  ]
+}
